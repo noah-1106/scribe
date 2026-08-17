@@ -17,8 +17,8 @@
 
 ### A. 拷贝版（整个文件夹拷走即跑，推荐个人/团队内部使用）
 
-整个 `scribe/` 目录（约 1.9GB）是**完全自包含**的：
-模型、ffmpeg、Python 依赖（`.venv/`，864MB）全部内置。
+整个 `scribe/` 目录（约 2.1GB）是**完全自包含**的：
+模型、ffmpeg、Python 解释器和依赖（`.venv/`，1.1GB，python-build-standalone 独立构建）全部内置。
 
 ```bash
 # 拷到任何位置（外置硬盘 / 另一台同架构 Mac），直接运行：
@@ -26,8 +26,8 @@ cd scribe
 ./start.sh
 ```
 
-> ⚠️ `.venv/` 绑定 **macOS arm64 + Python 3.9**（已实测：整个文件夹拷到**任意路径**均可直接运行，
-> venv 不依赖绝对路径，靠的是对方 Mac 装有 Xcode Command Line Tools——macOS 开发机默认都有）。
+> ⚠️ `.venv/` 绑定 **macOS arm64 + Python 3.9.22**（独立解释器已嵌入，不依赖 Xcode CLT；
+> 已实测：整个文件夹拷到**任意路径**均可直接运行，接收方**什么都不用装**）。
 > 拷到 Intel Mac 或 Windows 不能用 venv，请走方式 B 或重装依赖。
 
 ### B. GitHub 版（源码分发，需自行安装依赖和模型）
@@ -42,7 +42,7 @@ cd scribe
 ### 拷贝版（方式 A）
 
 **零安装**——Python 包、模型、ffmpeg 全部内置在文件夹内，拷到任意路径双击 `start.sh` 即跑。
-唯一要求：**macOS arm64（Apple Silicon）+ 装有 Xcode Command Line Tools**（venv 的解释器软链到系统 CLT 的 Python 3.9；没装过的话终端跑 `xcode-select --install` 一次即可）。
+唯一要求：**macOS arm64（Apple Silicon）**。解释器（Python 3.9.22，python-build-standalone）已嵌入项目，接收方零安装、开箱即用。
 
 ### GitHub 版（方式 B）
 
@@ -111,7 +111,7 @@ scribe/
 ├── diarize.py                 ← 说话人分离：CAM++ 声纹 + 余弦聚类
 ├── bin/
 │   └── ffmpeg                 ← 内置音频解码器（63MB，macOS arm64）★ 拷贝版内置
-├── .venv/                     ← Python 依赖（864MB，绑 macOS arm64 + py3.9）★ 拷贝版内置
+├── .venv/                     ← Python 解释器+依赖（1.1GB，python-build-standalone，绑 macOS arm64）★ 拷贝版内置
 ├── frontend/
 │   └── index.html             ← 单页前端（实时录音 / 上传 / 项目栏 / 下载）
 ├── models/                    ← ★ 拷贝版内置；GitHub 版需自行下载
@@ -261,5 +261,5 @@ Python 依赖全部有 Windows 官方轮子，`pip install -r requirements.txt` 
 | 说话人分离做成可选开关 | 单人录音零开销（模型不加载）；<2s 插话归属不可信，不应默认开启 | 默认开启 / pyannote（重+授权门槛） |
 | 项目目录毫秒时间戳命名 | 同项目多次录音各自独立、不覆盖、按时间排序 | 秒级时间戳（理论碰撞）/ 自增序号（无法排序） |
 | 所有缓存/临时目录钉到项目内 | 外置盘部署时系统盘零写入，防 100% 满盘崩溃 | 依赖系统 TMPDIR（macOS shell 自带，setdefault 不生效必须强制覆盖） |
-| 拷贝版内置 .venv | 整个文件夹拷走即跑，零安装 | 依赖系统 Python 环境（换机即失效） |
+| 拷贝版内置 .venv（独立解释器） | 整个文件夹拷走即跑，真·零安装 | python-build-standalone 嵌入，不依赖系统 Python 或 Xcode CLT |
 | GitHub 版排除 .venv/models/ffmpeg | 仓库轻量（仅源码 <1MB），重资产由用户按需下载 | 全量上传（几个 GB 不适合 Git 托管） |
