@@ -1,0 +1,33 @@
+[15:03:27] 正在加载 SenseVoice-Small + FSMN-VAD（一次性，首次约 15s）…
+/Users/tannoah/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/tannoah/Library/Python/3.9/lib/python/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+  warn("Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work", RuntimeWarning)
+Notice: ffmpeg is not installed. torchaudio is used to load audio
+If you want to use ffmpeg backend to load audio, please install it by:
+	sudo apt install ffmpeg # ubuntu
+	# brew install ffmpeg # mac
+funasr version: 1.3.14.
+[15:03:37] download models from model hub: ms
+[15:03:37] trust_remote_code: True
+Loading remote code failed: model, No module named 'model'
+[15:03:37] Loading pretrained params from /Volumes/Backups/scribe/models/SenseVoiceSmall/model.pt
+[15:03:37] ckpt: /Volumes/Backups/scribe/models/SenseVoiceSmall/model.pt
+[15:03:38] scope_map: ['module.', 'None']
+[15:03:38] excludes: None
+[15:03:39] Loading ckpt: /Volumes/Backups/scribe/models/SenseVoiceSmall/model.pt, status: <All keys matched successfully>
+funasr version: 1.3.14.
+[15:03:39] download models from model hub: ms
+[15:03:39] trust_remote_code: True
+Loading remote code failed: model, No module named 'model'
+[15:03:39] Loading pretrained params from /Volumes/Backups/scribe/models/speech_fsmn_vad/model.pt
+[15:03:39] ckpt: /Volumes/Backups/scribe/models/speech_fsmn_vad/model.pt
+[15:03:39] scope_map: ['module.', 'None']
+[15:03:39] excludes: None
+[15:03:39] Loading ckpt: /Volumes/Backups/scribe/models/speech_fsmn_vad/model.pt, status: <All keys matched successfully>
+[15:03:39] 模型常驻完成，耗时 2.0s
+[15:03:39] scribe 就绪 → http://localhost:8399
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s]{'load_data': '0.004', 'extract_feat': '0.023', 'forward': '0.063', 'batch_size': '1', 'rtf': '0.011'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00, 15.89it/s]rtf_avg: 0.011: 100%|[34m██████████[0m| 1/1 [00:00<00:00, 15.85it/s]                                                                                          rtf_avg: 0.011: 100%|[34m██████████[0m| 1/1 [00:00<00:00, 15.83it/s]
+  0%|[34m          [0m| 0/1 [00:00<?, ?it/s]100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.03it/s]{'load_data': '0.000', 'extract_feat': '0.009', 'forward': '0.967', 'batch_size': '1', 'rtf': '0.168'}, : 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.03it/s]rtf_avg: 0.168: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.03it/s]                                                                                          rtf_avg: 0.168: 100%|[34m██████████[0m| 1/1 [00:00<00:00,  1.03it/s]
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

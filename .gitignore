@@ -1,0 +1,15 @@
+# ── 不进入 GitHub 的重资产（拷贝版保留）──
+.venv/
+models/
+bin/ffmpeg
+
+# ── 运行时产物 ──
+data/outputs/
+data/tmp/
+data/cache/
+__pycache__/
+*.pyc
+.DS_Store
+
+# ── 测试素材（体积大，按需自行准备）──
+data/test/
