@@ -26,7 +26,8 @@ cd scribe
 ./start.sh
 ```
 
-> ⚠️ `.venv/` 绑定 **macOS arm64 + Python 3.9**。
+> ⚠️ `.venv/` 绑定 **macOS arm64 + Python 3.9**（已实测：整个文件夹拷到**任意路径**均可直接运行，
+> venv 不依赖绝对路径，靠的是对方 Mac 装有 Xcode Command Line Tools——macOS 开发机默认都有）。
 > 拷到 Intel Mac 或 Windows 不能用 venv，请走方式 B 或重装依赖。
 
 ### B. GitHub 版（源码分发，需自行安装依赖和模型）
@@ -40,8 +41,8 @@ cd scribe
 
 ### 拷贝版（方式 A）
 
-**零依赖**——Python 包、模型、ffmpeg 全部内置在文件夹内。
-唯一要求：**macOS arm64（Apple Silicon）**，Python 3.9 解释器由 venv 自带。
+**零安装**——Python 包、模型、ffmpeg 全部内置在文件夹内，拷到任意路径双击 `start.sh` 即跑。
+唯一要求：**macOS arm64（Apple Silicon）+ 装有 Xcode Command Line Tools**（venv 的解释器软链到系统 CLT 的 Python 3.9；没装过的话终端跑 `xcode-select --install` 一次即可）。
 
 ### GitHub 版（方式 B）
 
@@ -242,6 +243,7 @@ Python 依赖全部有 Windows 官方轮子，`pip install -r requirements.txt` 
 - 完全离线可用，不联网、不上传任何数据
 - 模型加载传 `disable_update=True`，缓存钉在项目内，不会回源请求 ModelScope/HuggingFace
 - 所有音频处理在本机完成，产物只写入 `data/outputs/`
+- 运行日志只输出到终端（不写 `server.log` 文件），分发前无需清理日志残留
 
 ---
 
