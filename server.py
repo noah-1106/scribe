@@ -17,7 +17,7 @@
 音频解码优先级：项目内置 bin/ffmpeg → 系统 ffmpeg → macOS 原生 afconvert 兜底。
 
 运行位置说明（外部硬盘部署）：
-  项目位于 /Volumes/Backups/scribe，启动时把 TMPDIR / MODELSCOPE_CACHE / HF_HOME /
+  项目位于本项目文件夹（路径任意，可整体拷贝移动），启动时把 TMPDIR / MODELSCOPE_CACHE / HF_HOME /
   XDG_CACHE_HOME 全部钉到项目内 data/tmp 与 data/cache——上传临时文件、模型缓存、
   torch hub 产物一律写外置盘，不碰系统盘。这些环境变量必须在 import fastapi /
   funasr 之前设置（它们在建临时文件/选缓存根时就读取环境），所以放在文件顶部。

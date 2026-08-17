@@ -8,7 +8,7 @@
 import asyncio, base64, json, math, os, subprocess, sys, time
 import websockets, soundfile as sf
 
-BASE = "/Volumes/Backups/scribe"
+BASE = os.path.dirname(os.path.abspath(__file__))
 wav, sr = sf.read(f"{BASE}/data/test/p004_126s.wav")
 if wav.ndim > 1: wav = wav.mean(axis=1)
 wav = wav[:int(35*sr)]

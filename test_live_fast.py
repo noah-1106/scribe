@@ -3,10 +3,10 @@
 """实时转录端到端测试（紧凑版）：推流 0.3s/块、总时长 18s、无 stop 后空等。
 验证三件事：1) 句子实时到达（不是停止后才到）2) partial 到达 3) final 落盘。
 """
-import asyncio, base64, json, math, subprocess, sys, time
+import asyncio, base64, json, math, os, subprocess, sys, time
 import websockets, soundfile as sf
 
-BASE = "/Volumes/Backups/scribe"
+BASE = os.path.dirname(os.path.abspath(__file__))
 wav, sr = sf.read(f"{BASE}/data/test/p004_126s.wav")
 if wav.ndim > 1: wav = wav.mean(axis=1)
 wav = wav[:int(18*sr)]

@@ -5,12 +5,12 @@
 复现 test_live.py 的输入路径：
   wav → 0.5s 一块 webm 编码 → ffmpeg_decode_block 解码 → LiveSession
 逐步骤打印：解码采样数、VAD 闭合段、识别结果。"""
-import base64, math, subprocess, sys, time
+import base64, math, os, subprocess, sys, time
 import numpy as np
 import soundfile as sf
-sys.path.insert(0, "/Volumes/Backups/scribe")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-BASE = "/Volumes/Backups/scribe"
+BASE = os.path.dirname(os.path.abspath(__file__))
 wav, sr = sf.read(f"{BASE}/data/test/p004_126s.wav")
 if wav.ndim > 1: wav = wav.mean(axis=1)
 wav = wav[:int(35 * sr)].astype(np.float32)

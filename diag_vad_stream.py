@@ -3,14 +3,15 @@
 """诊断：流式 VAD 原始输出格式实测。把 p004 前 20s 按 0.5s 块喂给
 FsmnVADStreaming，逐块打印 value 原始值，确认 [start,-1]/[-1,end] 的
 确切语义与坐标系（相对 chunk 还是全局流）。"""
-import sys, time
+import os, sys, time
 import numpy as np
 import soundfile as sf
-sys.path.insert(0, "/Volumes/Backups/scribe")
+BASE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE)
 from funasr import AutoModel
 
-VAD_DIR = "/Volumes/Backups/scribe/models/speech_fsmn_vad"
-wav, sr = sf.read("/Volumes/Backups/scribe/data/test/p004_126s.wav")
+VAD_DIR = os.path.join(BASE, "models", "speech_fsmn_vad")
+wav, sr = sf.read(os.path.join(BASE, "data", "test", "p004_126s.wav"))
 if wav.ndim > 1: wav = wav.mean(axis=1)
 wav = wav[:int(20 * sr)].astype(np.float32)
 

@@ -6,11 +6,12 @@
 （"Thecrowdtreescantohere" 这类乱句 + 时间戳超界），所以本测试
 用 VAD 边界（可信）代替句子边界，验证 diarization 核心链路本身。
 """
+import os
 import numpy as np, soundfile as sf
 from funasr import AutoModel
 from diarize import label_speakers
 
-BASE = "/Users/tannoah/.exflower/workspace/agent-022/scribe"
+BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = f"{BASE}/data/test/two_spk.wav"
 mix, sr = sf.read(OUT)
 
